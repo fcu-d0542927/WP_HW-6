@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>HW</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+</script>
+
+<script>
+$(document).ready(function(){
+ $("p").show(function(){
+ $("#College").show();
+});
+});
+
+
+</script>
+
+<script>
+var CollegeAndModels = {};
+CollegeAndModels['商'] = ['會計學系', '國際經營與貿易學系', '財稅學系', '經濟學系'];
+CollegeAndModels['資電'] = ['資訊工程學系', '電機工程學系', '電子工程學系', '自動控制工程學系'];
+CollegeAndModels['工'] = ['纖維與電腦輔助工程學系', '機械與電腦輔助工程學系', '工業工程與系統管理學系', '化學工程學系'];
+
+function ChangedepartmentList() {
+    var departmentList = document.getElementById("College");
+    var modelList = document.getElementById("collegemodel");
+    var alldepartment = departmentList.options[departmentList.selectedIndex].value;
+    while (modelList.options.length) {
+        modelList.remove(0);
+    }
+    var departments = CollegeAndModels[alldepartment];
+    if (departments) {
+        var i;
+        for (i = 0; i < departments.length; i++) {
+            var College = new Option(departments[i], i);
+            modelList.options.add(College);
+        }
+    }
+}; 
+</script>
+</head>
+<body>   
+<p> 請選擇學院</p>
+<select id="College" onchange="ChangedepartmentList()">
+  <option value="">-- College --</option> 
+  <option value="商">商學院</option> 
+  <option value="資電">資電學院</option> 
+  <option value="工">工學院</option> 
+</select> 
+<br>
+<p>當你選擇學院後, 下列選單會列出屬於該學院的科系</p>
+<select id="collegemodel"></select> 
+
+
+
+
+</body>
+</html>
